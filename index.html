@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <h1>Data Type Conversion</h1>
+
+    <script>
+        var header = ["Value to be converted", "Number()", "String()", "Boolean()"];
+        var valueToBeCoverted = [false, true, 0, 1, "0", "000", "1", NaN, Infinity, -Infinity, "", "20", "Twenty", null, undefined];
+
+        var table = document.createElement('table');
+        table.style.border = "1px solid Black";
+
+        var tHead = document.createElement("thead");
+        var tr = document.createElement("tr");
+
+        for (var i = 0; i < header.length; i++) {
+            var th = document.createElement("th");
+            th.innerHTML = header[i]; 
+            th.style.border = "1px solid Black";
+            th.style.padding = "10px 5px";
+           tr.appendChild(th);
+        }
+
+        tHead.appendChild(tr);
+        table.appendChild(tHead);
+
+        for (var r = 0; r < valueToBeCoverted.length; r++) {
+            var row = table.insertRow();
+
+            var cell = row.insertCell();
+            cell.textContent = valueToBeCoverted[r];
+            cell.style.border = "1px solid Black";
+            cell.style.padding = "5px";
+
+            if(valueToBeCoverted[r] === "")
+                cell.textContent = '""';
+            if(valueToBeCoverted[r] === null)
+                cell.textContent = "null";
+            if(r == (valueToBeCoverted.length-1))
+                cell.textContent = "undefined";
+
+            for (var c = 1; c < header.length; c++) {
+                var cell = row.insertCell();
+                cell.style.border = "1px solid Black";
+                cell.style.padding = "5px";
+
+                if (header[c] === "Number()") {
+                    cell.textContent = Number(valueToBeCoverted[r]);
+                }
+                else if (header[c] === "String()") {
+                    cell.textContent = '"' + String(valueToBeCoverted[r]) + '"';
+                }
+                else {
+                    cell.textContent = Boolean(valueToBeCoverted[r]);
+                    cell.style.textAlign = "center";
+                }                    
+            }
+        }
+        document.body.appendChild(table);
+    </script>
+
+</body>
+
+</html>
